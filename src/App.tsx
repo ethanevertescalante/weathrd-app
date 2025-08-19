@@ -42,12 +42,16 @@ function App() {
 
 
   return (
-    <div className="app-container">
-      <div className="welcome-container">
-          <h1 className="welcome-text">Welcome To Weatherd</h1>
+      <div className="app-container">
+          <header className="welcome-container">
+              <h1 className="welcome-text">Welcome To Weatherd</h1>
+          </header>
+          <main className="main-flex">
+              <input ref={inputRef}  className="weather-search" type="search"
+                     placeholder="San Francisco"/>
+              <p className="footer-text">Created By Ethan Evert Escalante 2025</p>
+          </main>
       </div>
-      <input ref={inputRef} id="rotating-input" className="weather-search" type="search" placeholder="San Francisco"/>
-    </div>
   )
 }
 
