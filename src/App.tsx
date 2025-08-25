@@ -1,6 +1,6 @@
 import './App.css'
 import {useEffect, useRef} from "react";
-
+import SearchIcons from "../components/SearchIcon.tsx";
 
 function App() {
     const inputRef = useRef<HTMLInputElement>(null);
@@ -47,8 +47,13 @@ function App() {
               <h1 className="welcome-text">Welcome To Weatherd</h1>
           </header>
           <main className="main-flex">
-              <input ref={inputRef}  className="weather-search" type="search"
-                     placeholder="San Francisco"/>
+             <span className="search-button-flex">
+                 <input ref={inputRef}  className="weather-search" type="search"
+                        placeholder="San Francisco"/>
+                 <button className="submit-button">
+                     <SearchIcons size={35} className={"none"}/>
+                 </button>
+             </span>
               <p className="footer-text">Created By Ethan Evert Escalante 2024</p>
           </main>
       </div>
