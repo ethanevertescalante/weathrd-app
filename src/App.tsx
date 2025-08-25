@@ -49,7 +49,7 @@ function App() {
           <main className="main-flex">
               <input ref={inputRef}  className="weather-search" type="search"
                      placeholder="San Francisco"/>
-              <p className="footer-text">Created By Ethan Evert Escalante 2025</p>
+              <p className="footer-text">Created By Ethan Evert Escalante 2024</p>
           </main>
       </div>
   )
