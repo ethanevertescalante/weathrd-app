@@ -1,9 +1,27 @@
 import './App.css'
-import {useEffect, useRef} from "react";
+import {useEffect, useRef, useState} from "react";
 import SearchIcons from "../components/SearchIcon.tsx";
+import submitLocation from "../scripts/weatherAPI.ts"
+import * as React from "react";
 
 function App() {
-    const inputRef = useRef<HTMLInputElement>(null);
+    const inputRef = useRef(null);
+    const [error, setError] = useState<string | null>(null);
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        if(inputRef.current) {
+            const response = submitLocation(inputRef.current["value"]);
+
+            if(response.success) {
+                setError(null);
+                console.log("response success", response);
+            }else{
+                setError(response.error);
+            }
+
+        }
+    }
 
     useEffect(() => {
         if(!inputRef.current) return;
@@ -32,10 +50,6 @@ function App() {
 
         return () => clearTimeout(timoutId);
 
-
-
-
-
     }, []);
 
 
@@ -48,11 +62,17 @@ function App() {
           </header>
           <main className="main-flex">
              <span className="search-button-flex">
-                 <input ref={inputRef}  className="weather-search" type="search"
-                        placeholder="San Francisco"/>
-                 <button className="submit-button">
-                     <SearchIcons size={35} className={"none"}/>
-                 </button>
+                 <form onSubmit={handleSubmit}>
+                     <input
+                         ref={inputRef}
+                         className={`weather-search ${error ? "error" : ""}`}
+                         type="search"
+                         placeholder="San Francisco"
+                     />
+                     <button className={`submit-button ${error ? "error" : ""}`}>
+                        <SearchIcons size={35} className={"none"}/>
+                     </button>
+                 </form>
              </span>
               <p className="footer-text">Created By Ethan Evert Escalante 2024</p>
           </main>
